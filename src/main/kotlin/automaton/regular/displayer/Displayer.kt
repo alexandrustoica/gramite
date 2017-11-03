@@ -1,4 +1,4 @@
-package automata.regular.displayer
+package automaton.regular.displayer
 
 /**
  * @author Alexandru Stoica

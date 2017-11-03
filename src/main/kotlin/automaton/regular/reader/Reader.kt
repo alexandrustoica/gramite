@@ -1,4 +1,4 @@
-package automata.regular.reader
+package automaton.regular.reader
 
 /**
  * @author Alexandru Stoica

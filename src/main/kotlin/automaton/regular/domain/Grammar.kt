@@ -1,4 +1,4 @@
-package automata.regular.domain
+package automaton.regular.domain
 
 /**
  * @author Alexandru Stoica
@@ -14,5 +14,5 @@ data class Grammar(val terminals: List<Terminal>,
     fun isRegular(): Boolean = rules.all { it.isRegular() }
 
     fun getRulesFor(nonTerminal: NonTerminal): List<Rule> =
-            rules.filter{ it.head.contains(nonTerminal) }
+            rules.filter { it.head.contains(nonTerminal) }
 }

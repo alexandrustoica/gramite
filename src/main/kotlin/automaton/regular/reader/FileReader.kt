@@ -1,4 +1,4 @@
-package automata.regular.reader
+package automaton.regular.reader
 
 import java.io.File
 

@@ -4,6 +4,8 @@
     <bytecodeTargetLevel>
       <module name="automata.regular.language_main" target="1.8" />
       <module name="automata.regular.language_test" target="1.8" />
+      <module name="automaton.regular.language_main" target="1.8" />
+      <module name="automaton.regular.language_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

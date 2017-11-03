@@ -1,0 +1,11 @@
+{
+  "states" : ["A", "B", "C"],
+  "startState" : "A",
+  "endStates" : ["C"],
+  "alphabet" : ["a", "b", "c"],
+  "transitions" : [
+    "A -> B : b",
+    "A -> A : a",
+    "B -> C : c",
+    "C -> C : c" ]
+}

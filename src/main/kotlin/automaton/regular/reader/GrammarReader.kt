@@ -1,9 +1,9 @@
-package automata.regular.reader
+package automaton.regular.reader
 
-import automata.regular.domain.Grammar
-import automata.regular.domain.GrammarBuilder
-import automata.regular.domain.NonTerminal
-import automata.regular.domain.Terminal
+import automaton.regular.builder.GrammarBuilder
+import automaton.regular.domain.Grammar
+import automaton.regular.domain.NonTerminal
+import automaton.regular.domain.Terminal
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Parser
 import com.beust.klaxon.array

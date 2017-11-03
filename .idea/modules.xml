@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/automata.regular.language.iml" filepath="$PROJECT_DIR$/.idea/modules/automata.regular.language.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/automata.regular.language_main.iml" filepath="$PROJECT_DIR$/.idea/modules/automata.regular.language_main.iml" group="automata.regular.language" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/automata.regular.language_test.iml" filepath="$PROJECT_DIR$/.idea/modules/automata.regular.language_test.iml" group="automata.regular.language" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/automaton.regular.language.iml" filepath="$PROJECT_DIR$/.idea/modules/automaton.regular.language.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/automaton.regular.language_main.iml" filepath="$PROJECT_DIR$/.idea/modules/automaton.regular.language_main.iml" group="automaton.regular.language" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/automaton.regular.language_test.iml" filepath="$PROJECT_DIR$/.idea/modules/automaton.regular.language_test.iml" group="automaton.regular.language" />
     </modules>
   </component>
 </project>

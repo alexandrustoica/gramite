@@ -1,4 +1,4 @@
-group 'automata.regular.language'
+group 'automaton.regular.language'
 version '1.0'
 
 buildscript {

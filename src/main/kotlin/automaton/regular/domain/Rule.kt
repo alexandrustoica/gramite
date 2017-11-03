@@ -1,18 +1,18 @@
-package automata.regular.domain
+package automaton.regular.domain
 
 /**
  * @author Alexandru Stoica
  * @version 1.0
  */
 
-data class Rule(val head: List<Symbol>, val body: List<Symbol>) {
+data class Rule(val head: List<Symbol>, private val body: List<Symbol>) {
 
     companion object Converter {
         private val asString = fun List<Symbol>.(): String =
                 this.map { it.value }.reduce { accumulator, item -> accumulator + item }
     }
 
-    override fun toString(): String =
+    override fun toString() =
             head.asString() + " -> " + body.asString()
 
     fun isRegular(): Boolean = regularHead && regularBody

@@ -1,4 +1,4 @@
-package automata.regular.domain
+package automaton.regular.domain
 
 /**
  * @author Alexandru Stoica

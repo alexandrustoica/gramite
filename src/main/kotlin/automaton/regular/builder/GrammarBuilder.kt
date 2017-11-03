@@ -1,4 +1,6 @@
-package automata.regular.domain
+package automaton.regular.builder
+
+import automaton.regular.domain.*
 
 /**
  * @author Alexandru Stoica
@@ -36,7 +38,8 @@ data class GrammarBuilder(
 
     private fun convertStringToRule(string: String): Rule =
             string.replace(" ", "").split("->").let {
-                Rule(convertStringToSymbols(it.component1()), convertStringToSymbols(it.component2())) }
+                Rule(convertStringToSymbols(it.component1()), convertStringToSymbols(it.component2()))
+            }
 
     private fun convertStringToSymbols(string: String): List<Symbol> =
             findAllSymbolsFrom(string, REGEX_SYMBOLS.toRegex()).map { convertCharacterToSymbol(it) }

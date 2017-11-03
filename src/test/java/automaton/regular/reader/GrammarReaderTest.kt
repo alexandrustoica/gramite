@@ -1,6 +1,6 @@
-package automata.regular.reader
+package automaton.regular.reader
 
-import org.junit.jupiter.api.Test
+import org.testng.annotations.Test
 
 /**
  * @author Alexandru Stoica
