@@ -7,4 +7,7 @@ package automaton.regular.domain
 
 data class State(val value: String) {
     override fun toString() = value
+    companion object {
+        val EMPTY = State("")
+    }
 }

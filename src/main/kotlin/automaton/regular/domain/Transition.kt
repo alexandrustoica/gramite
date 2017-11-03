@@ -9,4 +9,5 @@ data class Transition(private val start: State,
                       private val end: State,
                       private val value: Terminal) {
     override fun toString() = "$start -> $end : $value"
+    constructor() : this(State.EMPTY, State.EMPTY, Terminal.EMPTY)
 }

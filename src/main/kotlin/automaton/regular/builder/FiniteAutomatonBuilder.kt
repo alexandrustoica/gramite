@@ -17,10 +17,6 @@ data class FiniteAutomatonBuilder(
         private val alphabet: List<Terminal>,
         private val transitions: List<Transition>) {
 
-    companion object {
-        private val REGEX_SYMBOLS = "."
-    }
-
     constructor() : this(listOf(), State(""), listOf(), listOf(), listOf())
 
     fun setStates(states: List<State>): FiniteAutomatonBuilder =
@@ -35,9 +31,12 @@ data class FiniteAutomatonBuilder(
     fun setAlphabet(alphabet: List<Terminal>): FiniteAutomatonBuilder =
             FiniteAutomatonBuilder(states, startState, endStates, alphabet, transitions)
 
-    fun setTransitions(transitionsAsStrings: List<String>): FiniteAutomatonBuilder =
+    fun setTransitionsFromStrings(transitionsAsStrings: List<String>): FiniteAutomatonBuilder =
             FiniteAutomatonBuilder(states, startState, endStates, alphabet,
                     convertStringsToTransitions(transitionsAsStrings))
+
+    fun setTransitions(transitions: List<Transition>): FiniteAutomatonBuilder =
+            FiniteAutomatonBuilder(states, startState, endStates, alphabet, transitions)
 
     fun build() = FiniteAutomaton(states, startState, endStates, alphabet, transitions)
 

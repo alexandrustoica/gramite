@@ -15,5 +15,5 @@ fun main(args: Array<String>) {
     val grammarFromFile = GrammarReader().readFromFile(File("grammar.json"))
     grammarFromFile.isRegular()
     val automatonFromFile = FiniteAutomatonReader().readFromFile(File("finite_automaton.json"))
-    Converter().toGrammar(automatonFromFile)
+    println(Converter().toAutomaton(grammarFromFile))
 }

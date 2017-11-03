@@ -23,7 +23,7 @@ class FiniteAutomatonReader : Reader<FiniteAutomaton>, FileReader<FiniteAutomato
                 .setStartState(State(this.string("startState").orEmpty()))
                 .setEndStates(this.array<String>("endStates")?.value?.toList().orEmpty().map { State(it) })
                 .setAlphabet(this.array<String>("alphabet")?.value?.toList().orEmpty().map { Terminal(it) })
-                .setTransitions(this.array<String>("transitions")?.value?.toList().orEmpty())
+                .setTransitionsFromStrings(this.array<String>("transitions")?.value?.toList().orEmpty())
                 .build()
     }
 
@@ -38,7 +38,7 @@ class FiniteAutomatonReader : Reader<FiniteAutomaton>, FileReader<FiniteAutomato
             .setStartState(readStartState())
             .setEndStates(readStates("End States"))
             .setAlphabet(readAlphabet())
-            .setTransitions(readTransitions())
+            .setTransitionsFromStrings(readTransitions())
             .build()
 
     private fun readAlphabet(): List<Terminal> =
