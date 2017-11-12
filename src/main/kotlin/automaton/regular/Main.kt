@@ -1,6 +1,5 @@
 package automaton.regular
 
-import automaton.regular.adapter.Converter
 import automaton.regular.reader.FiniteAutomatonReader
 import automaton.regular.reader.GrammarReader
 import java.io.File
@@ -10,10 +9,9 @@ import java.io.File
  * @version 1.0
  */
 
-
 fun main(args: Array<String>) {
     val grammarFromFile = GrammarReader().readFromFile(File("grammar.json"))
     grammarFromFile.isRegular()
     val automatonFromFile = FiniteAutomatonReader().readFromFile(File("finite_automaton.json"))
-    println(Converter().toAutomaton(grammarFromFile))
+    println(grammarFromFile.toAutomaton())
 }

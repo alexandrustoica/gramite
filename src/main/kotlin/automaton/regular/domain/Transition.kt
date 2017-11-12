@@ -5,9 +5,9 @@ package automaton.regular.domain
  * @version 1.0
  */
 
-data class Transition(private val start: State,
-                      private val end: State,
-                      private val value: Terminal) {
+data class Transition(val start: State,
+                      val end: State,
+                      val value: Terminal) {
     override fun toString() = "$start -> $end : $value"
     constructor() : this(State.EMPTY, State.EMPTY, Terminal.EMPTY)
 }

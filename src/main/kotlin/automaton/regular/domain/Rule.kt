@@ -24,12 +24,12 @@ data class Rule(val head: List<Symbol>, val body: List<Symbol>) {
     override fun toString() =
             head.asString() + " -> " + body.asString()
 
-    fun isRegular(): Boolean = regularHead && regularBody
+    fun isRegular(start: NonTerminal): Boolean = regularHead && regularBody(start)
 
     private val regularHead: Boolean = head.size == 1 && head.all { it.type == SymbolType.NONTERMINAL }
 
-    private val regularBody: Boolean = body.size <= 2 &&
+    private fun regularBody(start: NonTerminal): Boolean =
+            (body.isEmpty() && head.first() == start) || (body.size in 1..2 &&
             body.getOrNull(0)?.type ?: SymbolType.TERMINAL == SymbolType.TERMINAL &&
-            body.getOrNull(1)?.type ?: SymbolType.NONTERMINAL == SymbolType.NONTERMINAL
-
+            body.getOrNull(1)?.type ?: SymbolType.NONTERMINAL == SymbolType.NONTERMINAL)
 }
