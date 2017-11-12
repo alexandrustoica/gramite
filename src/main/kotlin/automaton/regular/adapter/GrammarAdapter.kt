@@ -1,10 +1,6 @@
 package automaton.regular.adapter
 
-import automaton.regular.domain.FiniteAutomaton
-import automaton.regular.domain.Grammar
-import automaton.regular.domain.Rule
-import automaton.regular.domain.Transition
-
+import automaton.regular.domain.*
 /**
  * @author Alexandru Stoica
  * @version 1.0
@@ -13,9 +9,7 @@ import automaton.regular.domain.Transition
 class GrammarAdapter(private val automaton: FiniteAutomaton) {
 
     fun toGrammar() =
-            Grammar(automaton.alphabet, nonTerminals(), rules(), automaton.startState.toNonTerminal())
-
-    private fun rules(): List<Rule> = listOf()
+            Grammar(automaton.alphabet, nonTerminals(), convertTransitionsToRules(automaton.transitions), automaton.startState.toNonTerminal())
 
     private fun convertTransitionsToRules(transitions: List<Transition>) =
             transitions.map { convertTransitionToRule(it) }
@@ -25,8 +19,12 @@ class GrammarAdapter(private val automaton: FiniteAutomaton) {
                     listOf(transition.value) + filterTerminalState(transition))
 
     private fun filterTerminalState(transition: Transition) =
-            if(transition.end.value.matches(Regex("W\\d*"))) listOf()
+            if (isInSpecialCase(transition)) listOf()
             else listOf(transition.end.toNonTerminal())
+
+    private fun isInSpecialCase(transition: Transition) =
+            transition.end.value.matches(Regex("W\\d*")) ||
+                    (transition.value == Terminal.EMPTY && transition.start == automaton.startState)
 
     private fun nonTerminals() =
             automaton.states.filterNot { it.value.matches(Regex("W\\d*")) }.map { it.toNonTerminal() }
