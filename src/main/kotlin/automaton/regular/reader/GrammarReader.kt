@@ -4,6 +4,7 @@ import automaton.regular.builder.GrammarBuilder
 import automaton.regular.domain.Grammar
 import automaton.regular.domain.NonTerminal
 import automaton.regular.domain.Terminal
+import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Parser
 import com.beust.klaxon.array
@@ -26,11 +27,17 @@ class GrammarReader : Reader<Grammar>, FileReader<Grammar> {
                 .build()
     }
 
+    override fun readFromFile(source: File): Grammar =
+            getJsonParserFor(source).toGrammar()
+
+    fun readMultipleFromFile(source: File): List<Grammar> =
+            getJsonParserForFileList(source).map { it.toGrammar() }
+
     private fun getJsonParserFor(source: File): JsonObject =
             Parser().parse(StringBuilder(source.readText())) as JsonObject
 
-    override fun readFromFile(source: File): Grammar =
-            getJsonParserFor(source).toGrammar()
+    private fun getJsonParserForFileList(source: File): JsonArray<JsonObject> =
+            Parser().parse(StringBuilder(source.readText())) as JsonArray<JsonObject>
 
     override fun read(): Grammar = GrammarBuilder()
             .setTerminals(readTerminals())

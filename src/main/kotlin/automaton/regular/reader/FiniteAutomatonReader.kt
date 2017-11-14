@@ -4,10 +4,7 @@ import automaton.regular.builder.FiniteAutomatonBuilder
 import automaton.regular.domain.FiniteAutomaton
 import automaton.regular.domain.State
 import automaton.regular.domain.Terminal
-import com.beust.klaxon.JsonObject
-import com.beust.klaxon.Parser
-import com.beust.klaxon.array
-import com.beust.klaxon.string
+import com.beust.klaxon.*
 import java.io.File
 
 /**
@@ -27,11 +24,17 @@ class FiniteAutomatonReader : Reader<FiniteAutomaton>, FileReader<FiniteAutomato
                 .build()
     }
 
+    override fun readFromFile(source: File): FiniteAutomaton =
+            getJsonParserFor(source).toAutomaton()
+
+    fun readMultipleFromFile(source: File): List<FiniteAutomaton> =
+            getJsonParserForFileList(source).map {it.toAutomaton()}
+
     private fun getJsonParserFor(source: File): JsonObject =
             Parser().parse(StringBuilder(source.readText())) as JsonObject
 
-    override fun readFromFile(source: File): FiniteAutomaton =
-            getJsonParserFor(source).toAutomaton()
+    private fun getJsonParserForFileList(source: File): JsonArray<JsonObject> =
+            Parser().parse(StringBuilder(source.readText())) as JsonArray<JsonObject>
 
     override fun read(): FiniteAutomaton = FiniteAutomatonBuilder()
             .setStates(readStates("States"))

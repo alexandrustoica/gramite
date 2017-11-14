@@ -5,7 +5,7 @@ package automaton.regular.domain
  * @version 1.0
  */
 
-data class Rule(val head: List<Symbol>, val body: List<Symbol>) {
+data class Rule(val head: List<Symbol>, val body: List<Symbol>) : Comparable<Rule> {
 
     enum class RuleType {
         EMPTY, TERMINAL, NONTERMINAL
@@ -13,7 +13,7 @@ data class Rule(val head: List<Symbol>, val body: List<Symbol>) {
 
     companion object Converter {
         private val asString = fun List<Symbol>.(): String =
-                if (this.isEmpty()) " "
+                if (this.isEmpty()) ""
                 else this.map { it.value }.reduce { accumulator, item -> accumulator + item }
     }
 
@@ -33,4 +33,7 @@ data class Rule(val head: List<Symbol>, val body: List<Symbol>) {
             (body.isEmpty() && head.first() == start) || (body.size in 1..2 &&
                     body.getOrNull(0)?.type ?: SymbolType.TERMINAL == SymbolType.TERMINAL &&
                     body.getOrNull(1)?.type ?: SymbolType.NONTERMINAL == SymbolType.NONTERMINAL)
+
+    override fun compareTo(other: Rule): Int =
+            this.head.first().compareTo(other.head.first())
 }
