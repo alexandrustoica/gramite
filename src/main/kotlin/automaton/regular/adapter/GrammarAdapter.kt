@@ -1,6 +1,7 @@
 package automaton.regular.adapter
 
 import automaton.regular.domain.*
+
 /**
  * @author Alexandru Stoica
  * @version 1.0
@@ -12,14 +13,12 @@ class GrammarAdapter(private val automaton: FiniteAutomaton) {
             Grammar(automaton.alphabet, nonTerminals(), convertTransitionsToRules(automaton.transitions), automaton.startState.toNonTerminal())
 
     private fun convertTransitionsToRules(transitions: List<Transition>) =
-            transitions.map { convertTransitionToRule(it) } + transitions
-                            .filter { automaton.endStates.contains(it.start) }
-                            .filter { it.start == it.end }
-                            .map { convertEndTransitionToRule(it) }
+            transitions.map { convertTransitionToRule(it) } + convertEndTransitionsToRules()
 
-    private fun convertEndTransitionToRule(transition: Transition) =
-            Rule(listOf(transition.start.toNonTerminal()),
-                    listOf(transition.value))
+    private fun convertEndTransitionsToRules() =
+            automaton.endStates.flatMap {
+                automaton.getTransitionsBasedOn(it)
+                        .map { Rule(listOf(it.start.toNonTerminal()), listOf(it.value)) } }
 
     private fun convertTransitionToRule(transition: Transition) =
             Rule(listOf(transition.start.toNonTerminal()),

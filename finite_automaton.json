@@ -6,6 +6,5 @@
   "transitions" : [
     "A -> B : b",
     "A -> A : a",
-    "B -> C : c",
-    "C -> C : c" ]
+    "B -> C : c"]
 }
