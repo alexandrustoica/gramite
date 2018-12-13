@@ -4,12 +4,8 @@ import automaton.regular.domain.FiniteAutomaton
 import automaton.regular.domain.Transition
 import java.util.*
 
-/**
- * @author Alexandru Stoica
- * @version 1.0
- */
 
-class FiniteAutomatonDisplayer(private val automaton: FiniteAutomaton) : DisplayerManager() {
+class FiniteAutomatonDisplayed(private val automaton: FiniteAutomaton) : DisplayedManager() {
 
     enum class Option : DisplayOption {
         STATES, ALPHABET, FINAL, TRANSITIONS, EXIT

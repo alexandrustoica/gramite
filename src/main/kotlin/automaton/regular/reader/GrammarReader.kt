@@ -10,11 +10,6 @@ import com.beust.klaxon.Parser
 import com.beust.klaxon.array
 import java.io.File
 
-/**
- * @author Alexandru Stoica
- * @version 1.0
- */
-
 
 class GrammarReader : Reader<Grammar>, FileReader<Grammar> {
 
@@ -55,15 +50,21 @@ class GrammarReader : Reader<Grammar>, FileReader<Grammar> {
             readElementsBasedOn("NonTerminals", ",").map { NonTerminal(it) }
 
     private fun readElementsBasedOn(message: String, delimiters: String): List<String> =
-            print("$message: ").let { readLine()?.replace(" ", "")?.split(delimiters) ?: listOf() }
+            print("$message: ")
+                    .let { readLine()?.replace(" ", "")?.split(delimiters) ?: listOf() }
 
     private fun readRules(): List<String> =
-            print("Number of Rules: ").let { readRules(0, mutableListOf(), readLine()?.toInt() ?: 0) }
+            print("Number of Rules: ")
+                    .let { readRules(0, mutableListOf(), readLine()?.toInt() ?: 0) }
 
-    private fun readRules(indexRule: Int, accumulator: MutableList<String>, total: Int): List<String> =
+    private fun readRules(indexRule: Int, accumulator: MutableList<String>,
+                          total: Int): List<String> =
             if (indexRule == total) accumulator.toList()
-            else print("Rule#${indexRule + 1}: ").let { addToAccumulatorAndContinue(indexRule + 1, accumulator, total) }
+            else print("Rule#${indexRule + 1}: ")
+                    .let { addToAccumulatorAndContinue(indexRule + 1, accumulator, total) }
 
-    private fun addToAccumulatorAndContinue(indexRule: Int, accumulator: MutableList<String>, total: Int): List<String> =
-            readRules(indexRule, accumulator.add(readLine().orEmpty()).let { accumulator }, total)
+    private fun addToAccumulatorAndContinue(
+            indexRule: Int, accumulator: MutableList<String>, total: Int): List<String> =
+            readRules(indexRule, accumulator.add(readLine().orEmpty())
+                    .let { accumulator }, total)
 }

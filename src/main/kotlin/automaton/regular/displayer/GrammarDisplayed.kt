@@ -6,14 +6,8 @@ import automaton.regular.domain.Rule
 import automaton.regular.domain.Symbol
 import java.util.*
 
-/**
- * @author Alexandru Stoica
- * @version 1.0
- */
 
-
-
-class GrammarDisplayer(private val grammar: Grammar) : DisplayerManager() {
+class GrammarDisplayed(private val grammar: Grammar) : DisplayedManager() {
 
     enum class Option : DisplayOption {
         TERMINAL, NONTERMINAL, RULES, RULES_NONTERMINAL, EXIT
@@ -27,21 +21,36 @@ class GrammarDisplayer(private val grammar: Grammar) : DisplayerManager() {
             Option.EXIT to "5. Exit")
 
     override val action: HashMap<DisplayOption, () -> Unit> = hashMapOf(
-            Option.TERMINAL to { print("Terminals: ").let { printValues(grammar.terminals).also { start() } } },
-            Option.NONTERMINAL to { print("NonTerminals: ").let { printValues(grammar.nonTerminals).also { start() } } },
-            Option.RULES to { print("NonTerminals: ").let { printRules(grammar.rules) }.also { start() } },
-            Option.RULES_NONTERMINAL to { printRules(grammar.getRulesFor(readNonTerminal())).also { start() } },
+            Option.TERMINAL to {
+                print("Terminals: ").let {
+                    printValues(grammar.terminals).also { start() }
+                }
+            },
+            Option.NONTERMINAL to {
+                print("NonTerminals: ").let {
+                    printValues(grammar.nonTerminals).also { start() }
+                }
+            },
+            Option.RULES to { printRules(grammar.rules).also { start() } },
+            Option.RULES_NONTERMINAL to {
+                printRules(grammar.getRulesFor(readNonTerminal()))
+                        .also { start() }
+            },
             Option.EXIT to { print("Done") }
     )
 
-    override val getUserOptionFrom = fun(index: Int): DisplayOption = Option.values()[index - 1]
+    override val getUserOptionFrom = fun(index: Int): DisplayOption =
+            Option.values()[index - 1]
 
     private fun readNonTerminal() =
-            print("NonTerminal:").let { NonTerminal(readLine().orEmpty()) }
+            NonTerminal(readLine().orEmpty())
 
     private fun printRules(rules: List<Rule>) =
-            rules.forEachIndexed { index, rule -> println("Rule#$index: $rule") }
+            rules.forEachIndexed { index, rule ->
+                println("Rule#$index: $rule")
+            }
 
     private fun printValues(list: List<Symbol>) =
-            list.forEach { print("$it ") }.let { println() }
+            list.forEach { println("$it ") }
+
 }

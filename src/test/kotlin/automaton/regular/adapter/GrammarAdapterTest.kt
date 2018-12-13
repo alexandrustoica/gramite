@@ -11,10 +11,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.function.Executable
 import java.io.File
 
-/**
- * @author Alexandru Stoica
- * @version 1.0
- */
 
 internal class GrammarAdapterTest {
 
@@ -28,8 +24,9 @@ internal class GrammarAdapterTest {
 
     @Test
     fun isConvertingToGrammar() {
-        val actual =
-                GrammarReader().readMultipleFromFile(File("testing_grammars.json"))
+        val grammarFile = File({}.javaClass
+                .getResource("/testing_grammars.json").path)
+        val actual = GrammarReader().readMultipleFromFile(grammarFile)
         actual.forEach { it.isEqual(it.toAutomaton().toGrammar()) }
     }
 }

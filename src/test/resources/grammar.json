@@ -1,0 +1,6 @@
+{
+  "terminals" : ["a", "b"],
+  "nonTerminals" : ["S", "A", "B"],
+  "startSymbol" : "S",
+  "rules" : ["S -> ", "S -> bB", "S -> aA", "A -> bB", "B -> a"]
+}

@@ -9,11 +9,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.function.Executable
 import java.io.File
 
-/**
- * @author Alexandru Stoica
- * @version 1.0
- */
-
 internal class AutomatonAdapterTest {
 
     companion object AutomatonAssertTesting {
@@ -28,10 +23,10 @@ internal class AutomatonAdapterTest {
 
     @Test
     fun isConvertingToAutomaton() {
-        val actual =
-                FiniteAutomatonReader().readMultipleFromFile(File("testing_finite_automaton.json"))
-        actual.forEach { println(it) }
-        actual.forEach { println(it.toGrammar().toAutomaton()) }
+        val finiteAutomatonFile = File({}.javaClass
+                .getResource("/testing_finite_automaton.json").path)
+        val actual = FiniteAutomatonReader()
+                .readMultipleFromFile(finiteAutomatonFile)
         actual.forEach { it.isEqual(it.toGrammar().toAutomaton()) }
     }
 }

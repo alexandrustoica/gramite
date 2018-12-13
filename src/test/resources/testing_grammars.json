@@ -1,0 +1,20 @@
+[
+  {
+    "terminals" : ["a", "b"],
+    "nonTerminals" : ["S", "A", "B"],
+    "startSymbol" : "S",
+    "rules" : ["S -> ", "S -> bB", "S -> aA", "A -> bB", "B -> a"]
+  },
+  {
+    "terminals" : ["a", "b"],
+    "nonTerminals" : ["S", "A", "B"],
+    "startSymbol" : "S",
+    "rules" : ["S -> ", "S -> aA", "S -> bB", "A -> bB", "B -> a"]
+  },
+  {
+    "terminals" : ["a", "b", "c"],
+    "nonTerminals" : ["S", "A", "B"],
+    "startSymbol" : "S",
+    "rules" : ["S -> bA", "A -> a", "A -> aA", "A -> bB", "B -> c"]
+  }
+]

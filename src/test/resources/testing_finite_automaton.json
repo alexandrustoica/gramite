@@ -1,0 +1,23 @@
+[
+  {
+    "states" : ["A", "B", "C"],
+    "startState" : "A",
+    "endStates" : ["C"],
+    "alphabet" : ["a", "b", "c"],
+    "transitions" : ["A -> B : b", "A -> A : a", "B -> C : c"]
+  },
+  {
+    "states" : ["A", "B", "S"],
+    "startState" : "S",
+    "endStates" : ["A", "B"],
+    "alphabet" : ["a", "b", "c"],
+    "transitions" : ["S -> A : b", "S -> B : c", "B -> A : a"]
+  },
+  {
+    "states" : ["A", "B", "C"],
+    "startState" : "A",
+    "endStates" : ["B"],
+    "alphabet" : ["a", "b", "c"],
+    "transitions" : ["A -> C : c", "A -> A : a", "C -> B : b"]
+  }
+]

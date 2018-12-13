@@ -1,9 +1,5 @@
 package automaton.regular.domain
 
-/**
- * @author Alexandru Stoica
- * @version 1.0
- */
 
 interface Symbol : Comparable<Symbol> {
 

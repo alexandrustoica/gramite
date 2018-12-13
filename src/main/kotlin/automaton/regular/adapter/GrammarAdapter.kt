@@ -2,23 +2,24 @@ package automaton.regular.adapter
 
 import automaton.regular.domain.*
 
-/**
- * @author Alexandru Stoica
- * @version 1.0
- */
 
 class GrammarAdapter(private val automaton: FiniteAutomaton) {
 
     fun toGrammar() =
-            Grammar(automaton.alphabet, nonTerminals(), convertTransitionsToRules(automaton.transitions), automaton.startState.toNonTerminal())
+            Grammar(automaton.alphabet, nonTerminals(),
+                    convertTransitionsToRules(automaton.transitions),
+                    automaton.startState.toNonTerminal())
 
     private fun convertTransitionsToRules(transitions: List<Transition>) =
-            transitions.map { convertTransitionToRule(it) } + convertEndTransitionsToRules()
+            transitions.map { convertTransitionToRule(it) } +
+                    convertEndTransitionsToRules()
 
     private fun convertEndTransitionsToRules() =
             automaton.endStates.flatMap {
                 automaton.getTransitionsBasedOn(it)
-                        .map { Rule(listOf(it.start.toNonTerminal()), listOf(it.value)) } }
+                        .map { transition ->  Rule(listOf(
+                                transition.start.toNonTerminal()),
+                                listOf(transition.value)) } }
 
     private fun convertTransitionToRule(transition: Transition) =
             Rule(listOf(transition.start.toNonTerminal()),
@@ -30,8 +31,11 @@ class GrammarAdapter(private val automaton: FiniteAutomaton) {
 
     private fun isInSpecialCase(transition: Transition) =
             transition.end.value.matches(Regex("W\\d*")) ||
-                    (transition.value == Terminal.EMPTY && transition.start == automaton.startState)
+                    (transition.value == Terminal.EMPTY &&
+                            transition.start == automaton.startState)
 
     private fun nonTerminals() =
-            automaton.states.filterNot { it.value.matches(Regex("W\\d*")) }.map { it.toNonTerminal() }
+            automaton.states.filterNot { it.value.matches(Regex("W\\d*")) }
+                    .map { it.toNonTerminal() }
+
 }

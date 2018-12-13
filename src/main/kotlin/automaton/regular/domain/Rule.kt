@@ -1,11 +1,8 @@
 package automaton.regular.domain
 
-/**
- * @author Alexandru Stoica
- * @version 1.0
- */
 
-data class Rule(val head: List<Symbol>, val body: List<Symbol>) : Comparable<Rule> {
+data class Rule(val head: List<Symbol>,
+                val body: List<Symbol>) : Comparable<Rule> {
 
     enum class RuleType {
         EMPTY, TERMINAL, NONTERMINAL
@@ -14,7 +11,8 @@ data class Rule(val head: List<Symbol>, val body: List<Symbol>) : Comparable<Rul
     companion object Converter {
         private val asString = fun List<Symbol>.(): String =
                 if (this.isEmpty()) ""
-                else this.map { it.value }.reduce { accumulator, item -> accumulator + item }
+                else this.map { it.value }
+                        .reduce { accumulator, item -> accumulator + item }
     }
 
     val type: Rule.RuleType =
@@ -25,9 +23,11 @@ data class Rule(val head: List<Symbol>, val body: List<Symbol>) : Comparable<Rul
     override fun toString() =
             head.asString() + " -> " + body.asString()
 
-    fun isRegular(start: NonTerminal): Boolean = regularHead && regularBody(start)
+    fun isRegular(start: NonTerminal): Boolean =
+            regularHead && regularBody(start)
 
-    private val regularHead: Boolean = head.size == 1 && head.all { it.type == SymbolType.NONTERMINAL }
+    private val regularHead: Boolean =
+            head.size == 1 && head.all { it.type == SymbolType.NONTERMINAL }
 
     private fun regularBody(start: NonTerminal): Boolean =
             (body.isEmpty() && head.first() == start) || (body.size in 1..2 &&
@@ -36,4 +36,5 @@ data class Rule(val head: List<Symbol>, val body: List<Symbol>) : Comparable<Rul
 
     override fun compareTo(other: Rule): Int =
             this.head.first().compareTo(other.head.first())
+
 }

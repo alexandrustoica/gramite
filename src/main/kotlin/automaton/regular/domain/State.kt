@@ -1,16 +1,7 @@
 package automaton.regular.domain
 
 
-/**
- * @author Alexandru Stoica
- * @version 1.0
- */
-
-public data class State(val value: String) {
+data class State(val value: String) {
     override fun toString() = value
-    companion object {
-        val EMPTY = State("")
-    }
     fun toNonTerminal() = NonTerminal(value)
-    fun toTerminal() = Terminal(value)
 }

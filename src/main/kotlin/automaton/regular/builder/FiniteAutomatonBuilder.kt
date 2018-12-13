@@ -5,10 +5,6 @@ import automaton.regular.domain.State
 import automaton.regular.domain.Terminal
 import automaton.regular.domain.Transition
 
-/**
- * @author Alexandru Stoica
- * @version 1.0
- */
 
 data class FiniteAutomatonBuilder(
         private val states: List<State>,
@@ -35,9 +31,6 @@ data class FiniteAutomatonBuilder(
             FiniteAutomatonBuilder(states, startState, endStates, alphabet,
                     convertStringsToTransitions(transitionsAsStrings))
 
-    fun setTransitions(transitions: List<Transition>): FiniteAutomatonBuilder =
-            FiniteAutomatonBuilder(states, startState, endStates, alphabet, transitions)
-
     fun build() = FiniteAutomaton(states, startState, endStates, alphabet, transitions)
 
     private fun convertStringsToTransitions(strings: List<String>): List<Transition> =
@@ -47,4 +40,5 @@ data class FiniteAutomatonBuilder(
         string.replace(" ", "").split("->", ":").let {
             Transition(State(it.component1()), State(it.component2()), Terminal(it.component3()))
         }
+
 }

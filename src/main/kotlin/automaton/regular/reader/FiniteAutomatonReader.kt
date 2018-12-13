@@ -7,10 +7,6 @@ import automaton.regular.domain.Terminal
 import com.beust.klaxon.*
 import java.io.File
 
-/**
- * @author Alexandru Stoica
- * @version 1.0
- */
 
 class FiniteAutomatonReader : Reader<FiniteAutomaton>, FileReader<FiniteAutomaton> {
 
@@ -48,21 +44,30 @@ class FiniteAutomatonReader : Reader<FiniteAutomaton>, FileReader<FiniteAutomato
             readElementsBasedOn("Alphabet: ", ", ").map { Terminal(it) }
 
     private fun readStartState(): State =
-            print("Start Symbol: ").let { readLine()?.replace(" ", "") ?: "" }.let { State(it) }
+            State(print("Start Symbol: ")
+                    .let { readLine()?.replace(" ", "") ?: "" })
 
     private fun readStates(message: String): List<State> =
             readElementsBasedOn("$message: ", ",").map { State(it) }
 
     private fun readElementsBasedOn(message: String, delimiters: String): List<String> =
-            print("$message: ").let { readLine()?.replace(" ", "")?.split(delimiters) ?: listOf() }
+            print("$message: ").let { readLine()?.replace(" ", "")
+                    ?.split(delimiters) ?: listOf() }
 
     private fun readTransitions(): List<String> =
-            print("Number of Transitions: "). let {readTransitions(0, mutableListOf(), readLine()?.toInt() ?: 0) }
+            print("Number of Transitions: "). let {readTransitions(0,
+                    mutableListOf(), readLine()?.toInt() ?: 0) }
 
-    private fun readTransitions(indexTransition: Int, accumulator: MutableList<String>, total: Int): List<String> =
+    private fun readTransitions(
+            indexTransition: Int,
+            accumulator: MutableList<String>, total: Int): List<String> =
             if (indexTransition == total) accumulator.toList()
-            else print("Transition#${indexTransition + 1}: ").let { addToAccumulatorAndContinue(indexTransition + 1, accumulator, total) }
+            else print("Transition#${indexTransition + 1}: ").let {
+                addToAccumulatorAndContinue(indexTransition + 1, accumulator, total) }
 
-    private fun addToAccumulatorAndContinue(indexTransition: Int, accumulator: MutableList<String>, total: Int): List<String> =
-            readTransitions(indexTransition, accumulator.add(readLine().orEmpty()).let { accumulator }, total)
+    private fun addToAccumulatorAndContinue(
+            indexTransition: Int,
+            accumulator: MutableList<String>, total: Int): List<String> =
+            readTransitions(indexTransition, accumulator
+                    .add(readLine().orEmpty()).let { accumulator }, total)
 }

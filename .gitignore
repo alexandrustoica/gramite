@@ -15,3 +15,10 @@
 *.log
 
 
+.gradle/
+.idea/
+build/
+out/production/classes/META-INF/
+out/production/resources/
+out/test/classes/META-INF/
+out/test/resources/

@@ -2,15 +2,12 @@ package automaton.regular.adapter
 
 import automaton.regular.domain.*
 
-/**
- * @author Alexandru Stoica
- * @version 1.0
- */
 
 class AutomatonAdapter(private val grammar: Grammar) {
 
     fun toAutomaton() =
-            FiniteAutomaton(states(), grammar.startSymbol.toState(), endStates(), grammar.terminals, transitions())
+            FiniteAutomaton(states(), grammar.startSymbol.toState(), endStates(),
+                    grammar.terminals, transitions())
 
     private fun transitions() =
             grammar.rules.groupBy { it.type }.let {
