@@ -1,5 +1,10 @@
 ## gramite
 
+![https://sonarcloud.io/dashboard?id=alexandrustoica_gramite](https://img.shields.io/sonar/quality_gate/alexandrustoica_gramite?server=https%3A%2F%2Fsonarcloud.io)
+![](https://img.shields.io/github/workflow/status/alexandrustoica/gramite/Build%20&%20Tests)
+![](https://img.shields.io/github/repo-size/alexandrustoica/gramite)
+![](https://img.shields.io/sonar/tech_debt/alexandrustoica_gramite?server=https%3A%2F%2Fsonarcloud.io)
+
 By [Alexandru Stoica](https://github.com/alexandrustoica)
 
 **gramite** evaluates and converts regular grammars and FAs. This project represents a practical implementation for [Kleene's Theorem](http://www.cs.may.ie/staff/jpower/Courses/Previous/parsing/node6.html).
