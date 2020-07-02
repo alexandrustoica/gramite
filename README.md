@@ -1,7 +1,8 @@
-## grammer.automaton.evaluator
+## gramite
+
 By [Alexandru Stoica](https://github.com/alexandrustoica)
 
-> With this project, you can evaluate and convert regular grammars and FAs. This project represents a practical implementation for [Kleene's Theorem](http://www.cs.may.ie/staff/jpower/Courses/Previous/parsing/node6.html).
+**gramite** evaluates and converts regular grammars and FAs. This project represents a practical implementation for [Kleene's Theorem](http://www.cs.may.ie/staff/jpower/Courses/Previous/parsing/node6.html).
 
 Useful Resources: 
 * [Kleene's Algorithm](https://en.wikipedia.org/wiki/Kleene%27s_algorithm)
